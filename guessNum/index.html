@@ -28,7 +28,18 @@
         const secretNum = Math.ceil(Math.random() * 10);
         let tries = 0;
         
-        function guessNum(num) {}
+        function guessNum(num) {
+            while (tries !== 0) {
+                tries -= 1;
+                if (num === secretNum) {
+                    alert("Вы угадали!");
+                    break;
+                }
+                else {
+                    alert("Вы не угадали, у Вас ещё" + tries + "попыток.")
+                } 
+            }
+        }
     </script>
 </body>
 
