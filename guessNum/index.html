@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,17 +27,13 @@
     <script>
         const secretNum = Math.ceil(Math.random() * 10);
         let tries = 0;
-        
         function guessNum(num) {
-            while (tries !== 0) {
-                tries -= 1;
-                if (num === secretNum) {
-                    alert("Вы угадали!");
-                    break;
-                }
-                else {
-                    alert("Вы не угадали, у Вас ещё" + tries + "попыток.")
-                } 
+            tries++;
+            if (tries <= 5) {
+                num === secretNum ? alert('Вы угадали, чтобы отгадать новое число обновите страницу') : alert('Вы не угадали, попробуйте еще');
+            } 
+            else {
+                alert('Попытки закончились, чтобы начать новую игру обновите страницу.');
             }
         }
     </script>
