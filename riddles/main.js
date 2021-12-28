@@ -1,8 +1,8 @@
 var riddle = {
-    question: 'Висит груша нельзя скушать',
     correctAnswer: 'лампочка',
     hints: ['это съедобное', 'это фрукт'],
     tries: 3,
+    question: 'Висит груша нельзя скушать',
     checkAnswer() {
         // TODO: написать логику проверки правильного ответа
         // alert для пользователя, console.log()
