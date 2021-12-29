@@ -1,13 +1,12 @@
 var riddle = {
     question: 'Висит груша нельзя скушать',
     correctAnswer: 'лампочка',
-    hints: ['это не съедобное', 'это не фрукт'],
+    hints: ['это не съедобное', ' это не фрукт'],
     tries: 3,
     checkAnswer(guessedAnswer) {
-        // TODO: написать логику проверки правильного ответа
         if (guessedAnswer.toLowerCase() === this.correctAnswer.toLowerCase()) {
             alert('Правильный ответ');
-            location.reload();
+            location.reload(); // Обнуляем счетчик, "начинаем игру заново". 
         }
         else {
             alert('Неправильный ответ');
@@ -16,11 +15,9 @@ var riddle = {
                 alert('У вас осталась последняя попытка, вот вам подсказки: ' + this.hints);
             }
             if (this.tries === 0) {
-                location.reload();
+                location.reload(); // Обнуляем счетчик, "начинаем игру заново".
             }
-        }
-        // alert для пользователя, console.log()
-        
+        }       
     },
 }
 
@@ -30,11 +27,8 @@ window.onload = function() {
 
 function check() {
     var input = document.getElementsByTagName('input')[0];
-
     var guessedAnswer = input.value;
-
     if (guessedAnswer) {
-        // TODO: вызвать функцию checkAnswer у объекта загадки, передав туда ответ
         riddle.checkAnswer(guessedAnswer);
     }
 }
