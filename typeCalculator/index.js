@@ -4,28 +4,29 @@
     с ошибками компиляции или без них в зависимости от переданных параметров.
     Типы SumAction, LengthAction, ZeroAction также можно менять.
 */
+console.log('Тест');
 /* Этот код трогать не нужно */
 const calculator = (command) => {
     switch (command) {
-        case "sum":
+        case 'sum':
             return (a, b) => a + b;
-        case "length":
+        case 'length':
             return (a) => a.length;
-        case "zero":
-            return (a) => typeof a === "string" ? a.length !== 0 : a !== 0;
-        case "log":
+        case 'zero':
+            return (a) => (typeof a === 'string' ? a.length !== 0 : a !== 0);
+        case 'log':
             return (b) => (a) => Math.log(a) / Math.log(b);
     }
 };
 /* --- */
 /* Без ошибок */
-calculator("sum")(10, 15);
-calculator("length")("qweqweq");
-calculator("zero")(10);
-calculator("zero")("qweqwe");
-const ln = calculator("log")(Math.E);
+console.log(calculator('sum')(10, 15));
+calculator('length')('qweqweq');
+calculator('zero')(10);
+calculator('zero')('qweqwe');
+const ln = calculator('log')(Math.E);
 ln(15);
-calculator("log")(2)(256);
+calculator('log')(2)(256);
 /* Без ошибок */
 /*
     Комментариями @ts-expect-error помечены строчки, в которых должны быть ошибки в финальном решении.
@@ -34,42 +35,42 @@ calculator("log")(2)(256);
 */
 /* С ошибками */
 // @ts-expect-error
-calculator("lalaka")("malaka");
+calculator('lalaka')('malaka');
 // @ts-expect-error
-calculator("sum")(true);
+calculator('sum')(true);
 // @ts-expect-error
-calculator("sum")(10);
+calculator('sum')(10);
 // @ts-expect-error
-calculator("sum")("1");
+calculator('sum')('1');
 // @ts-expect-error
-calculator("length")(10);
+calculator('length')(10);
 // @ts-expect-error
-calculator("length")(true);
+calculator('length')(true);
 // @ts-expect-error
-calculator("length")("a", "b");
+calculator('length')('a', 'b');
 // @ts-expect-error
-calculator("zero")(10, 10);
+calculator('zero')(10, 10);
 // @ts-expect-error
-calculator("zero")(10, "10");
+calculator('zero')(10, '10');
 // @ts-expect-error
-calculator("zero")("10", 10);
+calculator('zero')('10', 10);
 // @ts-expect-error
-calculator("zero")(true);
+calculator('zero')(true);
 // @ts-expect-error
-calculator("zero")({});
+calculator('zero')({});
 // @ts-expect-error
-calculator("zero")([]);
+calculator('zero')([]);
 // @ts-expect-error
-calculator("log")("e");
+calculator('log')('e');
 // @ts-expect-error
-calculator("log")("10");
+calculator('log')('10');
 // @ts-expect-error
-calculator("log")(true);
+calculator('log')(true);
 // @ts-expect-error
-calculator("log")(10)("100");
+calculator('log')(10)('100');
 // @ts-expect-error
-calculator("log")(10)(true);
+calculator('log')(10)(true);
 // @ts-expect-error
-calculator("log")(2, 1024);
-/* --- */ 
+calculator('log')(2, 1024);
+/* --- */
 //# sourceMappingURL=index.js.map

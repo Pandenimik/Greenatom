@@ -3,42 +3,42 @@
     с ошибками компиляции или без них в зависимости от переданных параметров.
     Типы SumAction, LengthAction, ZeroAction также можно менять.
 */
-
-type SumAction = (...params: any) => any;
-type LengthAction = (...params: any) => any;
-type ZeroAction = (...params: any) => any;
-type LogAction = (...params: any) => (...params: any) => any;
+console.log('Тест');
+type SumAction = (a: number, b: number) => number;
+type LengthAction = (a: string) => number;
+type ZeroAction = (a: string) => boolean;
+type LogAction = (b: number) => (a: number) => number;
 
 interface Calculator {
-    (command: string): SumAction;
-    (command: string): LengthAction;
-    (command: string): ZeroAction;
-    (command: string): LogAction;
+  (sum: string): SumAction;
+  (length: string): LengthAction;
+  (zero: string): ZeroAction;
+  (log: string): LogAction;  
 }
 
 /* Этот код трогать не нужно */
 const calculator: Calculator = (command: string): any => {
-    switch (command) {
-        case "sum":
-            return (a: any, b: any) => a + b;
-        case "length":
-            return (a: any) => a.length;
-        case "zero":
-            return (a: any) => typeof a === "string" ? a.length !== 0 : a !== 0;
-        case "log":
-            return (b: any) => (a: any) => Math.log(a) / Math.log(b)
-    }
-}
+  switch (command) {
+    case 'sum':
+      return (a: any, b: any) => a + b;
+    case 'length':
+      return (a: any) => a.length;
+    case 'zero':
+      return (a: any) => (typeof a === 'string' ? a.length !== 0 : a !== 0);
+    case 'log':
+      return (b: any) => (a: any) => Math.log(a) / Math.log(b);
+  }
+};
 /* --- */
 
 /* Без ошибок */
-calculator("sum")(10, 15)
-calculator("length")("qweqweq")
-calculator("zero")(10)
-calculator("zero")("qweqwe")
-const ln = calculator("log")(Math.E)
-ln(15)
-calculator("log")(2)(256)
+console.log(calculator('sum')(10, 15));
+calculator('length')('qweqweq');
+calculator('zero')(10);
+calculator('zero')('qweqwe');
+const ln = calculator('log')(Math.E);
+ln(15);
+calculator('log')(2)(256);
 /* Без ошибок */
 
 /*
@@ -49,45 +49,45 @@ calculator("log")(2)(256)
 
 /* С ошибками */
 // @ts-expect-error
-calculator("lalaka")("malaka")
+calculator('lalaka')('malaka');
 
 // @ts-expect-error
-calculator("sum")(true)
+calculator('sum')(true);
 // @ts-expect-error
-calculator("sum")(10)
+calculator('sum')(10);
 // @ts-expect-error
-calculator("sum")("1")
+calculator('sum')('1');
 
 // @ts-expect-error
-calculator("length")(10)
+calculator('length')(10);
 // @ts-expect-error
-calculator("length")(true)
+calculator('length')(true);
 // @ts-expect-error
-calculator("length")("a", "b")
+calculator('length')('a', 'b');
 
 // @ts-expect-error
-calculator("zero")(10, 10)
+calculator('zero')(10, 10);
 // @ts-expect-error
-calculator("zero")(10, "10")
+calculator('zero')(10, '10');
 // @ts-expect-error
-calculator("zero")("10", 10)
+calculator('zero')('10', 10);
 // @ts-expect-error
-calculator("zero")(true)
+calculator('zero')(true);
 // @ts-expect-error
-calculator("zero")({})
+calculator('zero')({});
 // @ts-expect-error
-calculator("zero")([])
+calculator('zero')([]);
 
 // @ts-expect-error
-calculator("log")("e")
+calculator('log')('e');
 // @ts-expect-error
-calculator("log")("10")
+calculator('log')('10');
 // @ts-expect-error
-calculator("log")(true)
+calculator('log')(true);
 // @ts-expect-error
-calculator("log")(10)("100")
+calculator('log')(10)('100');
 // @ts-expect-error
-calculator("log")(10)(true)
+calculator('log')(10)(true);
 // @ts-expect-error
-calculator("log")(2, 1024)
+calculator('log')(2, 1024);
 /* --- */
