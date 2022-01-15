@@ -22,6 +22,12 @@ function saveToStorage(todo) {
   localStorage.setItem('tasks', JSON.stringify([...todos, todo]))
 }
 
+function removeFromStorage(delItem) {
+  const toFilterTasks = JSON.parse(localStorage.getItem('tasks'));
+  const filteredTasks = toFilterTasks.filter((i) => i !== delItem);
+  localStorage.setItem('tasks', JSON.stringify(filteredTasks));
+}
+
 function loadTodos() {
   const todos = JSON.parse(localStorage.getItem('tasks'));
 
@@ -42,4 +48,5 @@ function createTodo(text) {
 function removeTodo() {
   this.removeEventListener('click', removeTodo);
   this.remove();
+  removeFromStorage(this.innerHTML)
 }
