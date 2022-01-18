@@ -6,14 +6,14 @@
 console.log('Тест');
 type SumAction = (a: number, b: number) => number;
 type LengthAction = (a: string) => number;
-type ZeroAction = (a: string) => boolean;
+type ZeroAction = (a: string | number) => boolean;
 type LogAction = (b: number) => (a: number) => number;
 
 interface Calculator {
-  (sum: string): SumAction;
-  (length: string): LengthAction;
-  (zero: string): ZeroAction;
-  (log: string): LogAction;  
+  (command: 'sum'): SumAction;
+  (command: 'length'): LengthAction;
+  (command: 'zero'): ZeroAction;
+  (command: 'log'): LogAction;  
 }
 
 /* Этот код трогать не нужно */
