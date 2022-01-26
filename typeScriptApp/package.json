@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@types/faker": "^6.6.9",
+    "@types/yandex-maps": "^2.1.20"
+  }
+}
