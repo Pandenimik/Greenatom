@@ -1,11 +1,11 @@
 import React from 'react';
 
 function App() {
-  return (
-    <div>
-      text
-    </div>
-  );
+  const isAuth = false;
+
+  return <div>
+    {!isAuth && <p>вы авторизованы</p>}
+  </div>;
 }
 
 export default App;
